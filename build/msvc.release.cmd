@@ -15,6 +15,7 @@ echo "Error: release"
 exit 1
 :cmdXDefined
 
+set XYO_PATH_RELEASE_ORIGINAL=%XYO_PATH_RELEASE%
 set XYO_PATH_RELEASE=release
 
 xyo-cc glfw --has-archived-release --version-file=version.ini
@@ -26,3 +27,5 @@ call :cmdX cmd.exe /C build\msvc.cmd install
 call :cmdX cmd.exe /C build\msvc.cmd install-release
 call :cmdX if not exist release\%PROJECT%-%VERSION%.7z copy /B /Y archive\%PROJECT%-%VERSION%.7z release\%PROJECT%-%VERSION%.7z
 call :cmdX xyo-cc glfw --archive-release-sha512 --version-file=version.ini
+set XYO_PATH_RELEASE=%XYO_PATH_RELEASE_ORIGINAL%
+call :cmdX xyo-cc glfw --archive-release-sha512 --copy-local-archived-release --version-file=version.ini
