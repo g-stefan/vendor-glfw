@@ -22,11 +22,13 @@ if not "%ACTION%" == "make" goto :eof
 
 call :cmdX xyo-cc --mode=%ACTION% --source-has-archive glfw
 
+if not exist output\ mkdir output
 if not exist temp\ mkdir temp
 
 set INCLUDE=%XYO_PATH_REPOSITORY%\include;%INCLUDE%
 set LIB=%XYO_PATH_REPOSITORY%\lib;%LIB%
 set WORKSPACE_PATH=%CD%
+set WORKSPACE_PATH_OUTPUT=%WORKSPACE_PATH%\output
 set WORKSPACE_PATH_BUILD=%WORKSPACE_PATH%\temp
 
 if exist %WORKSPACE_PATH_BUILD%\build.done.flag goto :eof
@@ -41,7 +43,7 @@ SET CMD_CONFIG=cmake
 SET CMD_CONFIG=%CMD_CONFIG% ../../source
 SET CMD_CONFIG=%CMD_CONFIG% -G "Ninja"
 SET CMD_CONFIG=%CMD_CONFIG% -DCMAKE_BUILD_TYPE=Release
-SET CMD_CONFIG=%CMD_CONFIG% -DCMAKE_INSTALL_PREFIX=%WORKSPACE_PATH_BUILD%\glfw
+SET CMD_CONFIG=%CMD_CONFIG% -DCMAKE_INSTALL_PREFIX=%WORKSPACE_PATH_OUTPUT%
 
 if not exist %WORKSPACE_PATH_BUILD%\build.configured.flag %CMD_CONFIG%
 if errorlevel 1 goto makeError
@@ -68,10 +70,10 @@ echo done > %WORKSPACE_PATH_BUILD%\build.done.flag
 xyo-cc --mode=%ACTION% --lib glad_gl --lib-name=glad_gl --crt-dynamic --use-path=source/deps
 xyo-cc --mode=%ACTION% --lib glad_vulkan --lib-name=glad_vulkan --crt-dynamic --use-path=source/deps
 
-copy /Y /B lib\glad_gl.lib build\glfw\lib\glad_gl.lib
-copy /Y /B lib\glad_vulkan.lib build\glfw\lib\glad_vulkan.lib
+copy /Y /B lib\glad_gl.lib output\lib\glad_gl.lib
+copy /Y /B lib\glad_vulkan.lib output\lib\glad_vulkan.lib
 
-mkdir build\glfw\include\glad
+mkdir output\include\glad
 
-xcopy /Y /S /E "source\deps\glad\*" build\glfw\include\glad\
+xcopy /Y /S /E "source\deps\glad\*" output\include\glad\
 
