@@ -1,0 +1,9 @@
+{
+	"project": {
+		"name" : "glfw",
+		"type" : "xyo-cpp",
+		"SPDX-License-Identifier": "LicenseRef-",
+		"sourceLink" : "https://github.com/glfw/glfw",
+		"version" : "3.3.6"
+	}
+}
