@@ -2,7 +2,7 @@
 	"project": {
 		"name" : "glfw",
 		"type" : "xyo-cpp",
-		"SPDX-License-Identifier": "LicenseRef-",
+		"SPDX-License-Identifier": "zlib-acknowledgement",
 		"sourceLink" : "https://github.com/glfw/glfw",
 		"version" : "3.3.6"
 	}
