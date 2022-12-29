@@ -26,7 +26,7 @@ Shell.removeFile("archive/" + Project.vendor + ".7z");
 
 // Source
 runInPath("archive", function() {
-	webLink = "https://github.com/glfw/glfw/releases/download/3.3.6/glfw-3.3.6.zip";
+	webLink = "https://github.com/glfw/glfw/releases/download/3.3.8/glfw-3.3.8.zip";
 	if (!Shell.fileExists(Project.vendor + ".zip")) {
 		exitIf(Shell.system("curl --insecure --location " + webLink + " --output " + Project.vendor + ".zip"));
 	};

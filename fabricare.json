@@ -4,6 +4,9 @@
 		"type" : "xyo-cpp",
 		"SPDX-License-Identifier": "zlib-acknowledgement",
 		"sourceLink" : "https://github.com/glfw/glfw",
-		"version" : "3.3.6"
+		"version" : "3.3.8",
+		"hasRelease" : true,
+		"noVersion" : true,
+		"githubRelease" : true
 	}
 }
