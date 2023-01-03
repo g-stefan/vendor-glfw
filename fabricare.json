@@ -1,13 +1,17 @@
 {
-	"project": {
-		"name" : "glfw",
+	"solution": {
+		"name" : "vendor-glfw",
 		"type" : "xyo-cpp",
-		"SPDX-License-Identifier": "zlib-acknowledgement",
-		"sourceLink" : "https://github.com/glfw/glfw",
-		"version" : "3.3.8",
-		"hasRelease" : true,
-		"noVersion" : true,
-		"githubRelease" : true,
-		"githubRepository" : "vendor-glfw"
+		"projects": [
+			{
+				"name" : "glfw",
+				"SPDX-License-Identifier": "zlib-acknowledgement",
+				"sourceLink" : "https://github.com/glfw/glfw",
+				"version" : "3.3.8",
+				"noVersion" : true
+			}
+		],
+		"releaseName" : "glfw",
+		"hasGithub" : true
 	}
 }
