@@ -11,7 +11,6 @@
 				"noVersion" : true
 			}
 		],
-		"releaseName" : "glfw",
-		"hasGithub" : true
+		"releaseName" : "glfw"
 	}
 }
