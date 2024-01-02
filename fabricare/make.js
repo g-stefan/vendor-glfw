@@ -1,6 +1,6 @@
 // Created by Grigore Stefan <g_stefan@yahoo.com>
 // Public domain (Unlicense) <http://unlicense.org>
-// SPDX-FileCopyrightText: 2022-2023 Grigore Stefan <g_stefan@yahoo.com>
+// SPDX-FileCopyrightText: 2022-2024 Grigore Stefan <g_stefan@yahoo.com>
 // SPDX-License-Identifier: Unlicense
 
 Fabricare.include("vendor");
@@ -24,25 +24,24 @@ Shell.mkdirRecursivelyIfNotExists("temp");
 Shell.mkdirRecursivelyIfNotExists("temp/cmake");
 
 if (!Shell.fileExists("temp/build.config.flag")) {
-	Shell.copyFile("fabricare/CMakeLists.txt","source/CMakeLists.txt");
 
-	Shell.setenv("CC","cl.exe");
-	Shell.setenv("CXX","cl.exe");
+	Shell.setenv("CC", "cl.exe");
+	Shell.setenv("CXX", "cl.exe");
 
-	cmdConfig="cmake";
-	cmdConfig+=" ../../source";
-	cmdConfig+=" -G \"Ninja\"";
-	cmdConfig+=" -DCMAKE_BUILD_TYPE=Release";
-	cmdConfig+=" -DCMAKE_INSTALL_PREFIX="+Shell.realPath(Shell.getcwd())+"\\output";
+	cmdConfig = "cmake";
+	cmdConfig += " ../../source";
+	cmdConfig += " -G \"Ninja\"";
+	cmdConfig += " -DCMAKE_BUILD_TYPE=Release";
+	cmdConfig += " -DCMAKE_INSTALL_PREFIX=" + Shell.realPath(Shell.getcwd()) + "\\output";
 
-	runInPath("temp/cmake",function(){
+	runInPath("temp/cmake", function() {
 		exitIf(Shell.system(cmdConfig));
 	});
 
 	Shell.filePutContents("temp/build.config.flag", "done");
 };
 
-runInPath("temp/cmake",function(){
+runInPath("temp/cmake", function() {
 	exitIf(Shell.system("ninja"));
 	exitIf(Shell.system("ninja install"));
 	exitIf(Shell.system("ninja clean"));
@@ -50,7 +49,7 @@ runInPath("temp/cmake",function(){
 
 var compileProject = {
 	"project" : "glad_gl",
-	"includePath" : [ 
+	"includePath" : [
 		"output/include",
 		"source",
 		"source/deps"
@@ -62,7 +61,7 @@ compileLib(compileProject);
 
 var compileProject = {
 	"project" : "glad_vulkan",
-	"includePath" : [ 
+	"includePath" : [
 		"output/include",
 		"source",
 		"source/deps"
@@ -72,7 +71,6 @@ var compileProject = {
 
 compileLib(compileProject);
 
-Shell.copyFilesToDirectory("source/deps/glad/*","output/include/glad");
+Shell.copyFilesToDirectory("source/deps/glad/*", "output/include/glad");
 
 Shell.filePutContents("temp/build.done.flag", "done");
-

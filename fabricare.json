@@ -7,7 +7,7 @@
 				"name" : "glfw",
 				"SPDX-License-Identifier": "zlib-acknowledgement",
 				"sourceLink" : "https://github.com/glfw/glfw",
-				"version" : "3.3.8",
+				"version" : "3.3.9",
 				"noVersion" : true
 			}
 		],
