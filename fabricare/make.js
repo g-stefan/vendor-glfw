@@ -47,30 +47,4 @@ runInPath("temp/cmake", function() {
 	exitIf(Shell.system("ninja clean"));
 });
 
-var compileProject = {
-	"project" : "glad_gl",
-	"includePath" : [
-		"output/include",
-		"source",
-		"source/deps"
-	],
-	"cSource" : [ "source/deps/glad_gl.c" ]
-};
-
-compileLib(compileProject);
-
-var compileProject = {
-	"project" : "glad_vulkan",
-	"includePath" : [
-		"output/include",
-		"source",
-		"source/deps"
-	],
-	"cSource" : [ "source/deps/glad_vulkan.c" ]
-};
-
-compileLib(compileProject);
-
-Shell.copyFilesToDirectory("source/deps/glad/*", "output/include/glad");
-
 Shell.filePutContents("temp/build.done.flag", "done");
